@@ -33,7 +33,7 @@ Your host agent (Claude Code / Codex CLI / etc.) acts as the Chairman by default
 ### Option A: Install via npx (Recommended)
 
 ```bash
-cd agent-council
+cd agent-council-main
 
 npx agent-council
 ```
