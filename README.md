@@ -1,5 +1,7 @@
 # Agent Council
 
+**[한국어 버전 (Korean)](./README.ko.md)**
+
 > A skill that gathers opinions from multiple AI CLIs (Codex, Gemini, ...) and lets a configurable Chairman synthesize a conclusion.
 > Inspired by [Karpathy's LLM Council](https://github.com/karpathy/llm-council)
 
@@ -10,6 +12,10 @@
 Unlike Karpathy's LLM Council which directly calls each LLM's API (incurring costs), Agent Council uses your installed AI CLIs (Claude Code, Codex CLI, Gemini CLI, ...). This is especially useful if you mainly use one host CLI and occasionally consult others via subscriptions.
 
 Skills are much simpler and more reproducible than MCP. We recommend installing via npx and customizing it yourself!
+
+## Demo
+
+https://github.com/user-attachments/assets/c550c473-00d2-4def-b7ba-654cc7643e9b
 
 ## How it Works
 
@@ -29,9 +35,7 @@ Your host agent (Claude Code / Codex CLI / etc.) acts as the Chairman by default
 ### Option A: Install via npx (Recommended)
 
 ```bash
-cd agent-council-main
-
-npx agent-council
+npx github:team-attention/agent-council
 ```
 
 This copies the skill files to your current project directory.
@@ -42,6 +46,17 @@ By default, the installer auto-detects whether to install for Claude Code (`.cla
 Installed paths:
 - `.claude/skills/agent-council/` (Claude Code)
 - `.codex/skills/agent-council/` (Codex CLI)
+
+Optional (Codex repo skill):
+```bash
+npx github:team-attention/agent-council --target codex
+```
+
+Other targets:
+```bash
+npx github:team-attention/agent-council --target claude
+npx github:team-attention/agent-council --target both
+```
 
 The generated `council.config.yaml` includes only detected member CLIs (e.g. `claude`, `codex`, `gemini`) and avoids adding the host target as a member. This filtering happens only at initial generation; later edits will not auto-remove missing CLIs.
 
@@ -122,11 +137,24 @@ Ask your host agent to summon the council:
 "Ask codex and gemini for their opinions"
 ```
 
+### Direct Script Execution
+
+```bash
+JOB_DIR=$(.codex/skills/agent-council/scripts/council.sh start "Your question here")
+.codex/skills/agent-council/scripts/council.sh status --text "$JOB_DIR"
+.codex/skills/agent-council/scripts/council.sh results "$JOB_DIR"
+.codex/skills/agent-council/scripts/council.sh clean "$JOB_DIR"
+```
+
 Tip: add `--verbose` to `status --text` to include per-member lines.
 Tip: use `status --checklist` for a compact checkbox view (handy in Codex/Claude tool cells).
 Tip: use `wait` to block until meaningful progress without spamming tool cells (prints JSON, persists a cursor automatically; auto-batches to a small number of updates (typically ~5–10); `--bucket 1` for every completion).
 
 One-shot (runs job → waits → prints results → cleans):
+
+```bash
+.codex/skills/agent-council/scripts/council.sh "Your question here"
+```
 
 Note: In host-agent tool UIs (Codex CLI / Claude Code), one-shot does **not** block. It returns a single `wait` JSON payload so the host agent can update native plan/todo UIs. Continue with `wait` → native UI update → `results` → `clean`.
 

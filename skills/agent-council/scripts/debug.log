@@ -1,0 +1,4 @@
+[0721/011351.879:ERROR:base\i18n\icu_util.cc:232] Invalid file descriptor to ICU data received.
+[0721/011741.888:ERROR:base\i18n\icu_util.cc:232] Invalid file descriptor to ICU data received.
+[0721/011858.828:ERROR:base\i18n\icu_util.cc:232] Invalid file descriptor to ICU data received.
+[0721/011938.289:ERROR:base\i18n\icu_util.cc:232] Invalid file descriptor to ICU data received.
