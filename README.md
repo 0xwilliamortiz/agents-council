@@ -1,7 +1,5 @@
 # Agent Council
 
-**[한국어 버전 (Korean)](./README.ko.md)**
-
 > A skill that gathers opinions from multiple AI CLIs (Codex, Gemini, ...) and lets a configurable Chairman synthesize a conclusion.
 > Inspired by [Karpathy's LLM Council](https://github.com/karpathy/llm-council)
 
@@ -35,7 +33,9 @@ Your host agent (Claude Code / Codex CLI / etc.) acts as the Chairman by default
 ### Option A: Install via npx (Recommended)
 
 ```bash
-npx github:team-attention/agent-council
+cd agent-council
+
+npx agent-council
 ```
 
 This copies the skill files to your current project directory.
@@ -46,17 +46,6 @@ By default, the installer auto-detects whether to install for Claude Code (`.cla
 Installed paths:
 - `.claude/skills/agent-council/` (Claude Code)
 - `.codex/skills/agent-council/` (Codex CLI)
-
-Optional (Codex repo skill):
-```bash
-npx github:team-attention/agent-council --target codex
-```
-
-Other targets:
-```bash
-npx github:team-attention/agent-council --target claude
-npx github:team-attention/agent-council --target both
-```
 
 The generated `council.config.yaml` includes only detected member CLIs (e.g. `claude`, `codex`, `gemini`) and avoids adding the host target as a member. This filtering happens only at initial generation; later edits will not auto-remove missing CLIs.
 
