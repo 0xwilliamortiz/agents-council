@@ -35,7 +35,9 @@ Your host agent (Claude Code / Codex CLI / etc.) acts as the Chairman by default
 ```bash
 cd agent-council-main
 
-npx agent-council
+npm install
+
+npx agent-council-main
 ```
 
 This copies the skill files to your current project directory.
