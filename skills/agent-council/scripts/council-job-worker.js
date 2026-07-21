@@ -120,6 +120,16 @@ function main() {
   }
 
   const program = tokens[0];
+  if (path.basename(program) !== program) {
+    atomicWriteJson(statusPath, {
+      member,
+      state: 'error',
+      message: 'Command program must be a plain basename without path separators',
+      finishedAt: new Date().toISOString(),
+      command,
+    });
+    process.exit(1);
+  }
   const args = tokens.slice(1);
 
   atomicWriteJson(statusPath, {
