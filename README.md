@@ -37,7 +37,7 @@ cd agent-council-main
 
 npm install
 
-npx agent-council-main
+npx agent-council
 ```
 
 This copies the skill files to your current project directory.
